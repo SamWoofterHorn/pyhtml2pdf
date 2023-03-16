@@ -15,7 +15,7 @@ from .compressor import __compress
 
 def convert(
     source: str,
-    target: str,
+    target: str = None,
     timeout: int = 2,
     compress: bool = False,
     power: int = 0,
@@ -38,9 +38,11 @@ def convert(
 
     if compress:
         __compress(result, target, power)
-    else:
+    elif target:
         with open(target, "wb") as file:
             file.write(result)
+    else:
+        return result
 
 
 def __send_devtools(driver, cmd, params={}):
