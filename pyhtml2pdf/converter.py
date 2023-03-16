@@ -1,6 +1,7 @@
 import sys
 import json
 import base64
+import shutil
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -77,7 +78,13 @@ def __get_pdf_from_html(
             ChromeDriverManager().install(), options=webdriver_options
         )
     else:
-        driver = webdriver.Chrome(options=webdriver_options)
+        driver_path = shutil.which('chromedriver')
+
+        if driver_path:
+            driver = webdriver.Chrome(options=webdriver_options, executable_path=driver_path)
+
+        else:
+            driver = webdriver.Chrome(options=webdriver_options)
 
     driver.get(path)
 
