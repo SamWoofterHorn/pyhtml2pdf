@@ -70,7 +70,6 @@ def __get_pdf_from_html(
     webdriver_options.add_argument("--no-sandbox")
     webdriver_options.add_argument("--disable-dev-shm-usage")
     webdriver_options.add_argument("--remote-debugging-port=9222")
-    webdriver_options.add_argument("--user-data-dir=/home/ubuntu/.config/google-chrome/Default")
     webdriver_options.experimental_options["prefs"] = webdriver_prefs
 
     webdriver_prefs["profile.default_content_settings"] = {"images": 2}
