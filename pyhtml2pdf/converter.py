@@ -69,6 +69,7 @@ def __get_pdf_from_html(
     webdriver_options.add_argument("--disable-gpu")
     webdriver_options.add_argument("--no-sandbox")
     webdriver_options.add_argument("--disable-dev-shm-usage")
+    webdriver_options.add_argument("--remote-debugging-port=9222")
     webdriver_options.experimental_options["prefs"] = webdriver_prefs
 
     webdriver_prefs["profile.default_content_settings"] = {"images": 2}
@@ -81,7 +82,7 @@ def __get_pdf_from_html(
         driver_path = shutil.which('chromedriver')
 
         if driver_path:
-            driver = webdriver.Chrome(options=webdriver_options, executable_path=driver_path)
+            driver = webdriver.Chrome(driver_path, options=webdriver_options)
 
         else:
             driver = webdriver.Chrome(options=webdriver_options)
